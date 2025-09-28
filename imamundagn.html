@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Undangan Khitan</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+      margin: 0;
+      background: linear-gradient(180deg,#0b1220 0%, #081020 60%);
+      color: #fff;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    header {
+      background: linear-gradient(135deg,#1e3a8a,#2563eb);
+      color: #fff;
+      text-align: center;
+      padding: 40px 20px;
+    }
+    header h1 { margin: 0; font-size: 28px }
+    header p { margin: 8px 0 0 }
+    .container { max-width: 800px; margin: auto; padding: 20px }
+    .section { margin: 40px 0; text-align: center }
+    .section h2 { font-size: 22px; margin-bottom: 12px; color:#60a5fa }
+    .countdown { font-size: 24px; font-weight: bold; color:#f87171; margin-top: 10px }
+    .map { width: 100%; height: 300px; border: 0; border-radius: 12px; box-shadow:0 4px 12px rgba(0,0,0,.3) }
+    .photo-frame {
+      margin: 20px auto; max-width: 300px;
+      border: 6px solid #2563eb; border-radius: 16px; overflow: hidden;
+      box-shadow:0 6px 16px rgba(0,0,0,.5)
+    }
+    .photo-frame img { width: 100%; display: block }
+    footer { text-align: center; background:#0b215d; color:#fff; padding:20px }
+    #music-btn {
+      position: fixed; bottom: 20px; right: 20px;
+      background: #2563eb; color: #fff; border: none;
+      padding: 12px 18px; border-radius: 30px; cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,.4)
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>UNDANGAN KHITAN</h1>
+    <p>Assalamu’alaikum Warahmatullahi Wabarakatuh</p>
+    <p>
+      Dengan memohon rahmat serta ridho Allah SWT,
+      kami sekeluarga bermaksud menyelenggarakan acara khitanan putra kami tercinta.
+      <br><strong>ERVIN HAIDAR RAMDAN</strong><br>
+      (Putra ke-1 dari Bpk. Imam & Ibu Eha)<br>
+      Sehubungan dengan hal tersebut, dengan segala hormat kami mengundang Bapak/Ibu/Saudara/i
+      untuk berkenan hadir dan memberikan doa restu, agar acara ini berjalan lancar
+      serta putra kami kelak menjadi anak yang sholeh, berbakti kepada orang tua,
+      agama, bangsa, dan negara.
+      <br><br>
+      Kehadiran serta doa dari Bapak/Ibu/Saudara/i merupakan kehormatan
+      dan kebahagiaan tersendiri bagi kami sekeluarga.
+    </p>
+  </header>
+
+  <div class="container">
+    <div class="photo-frame">
+      <img src="/img/bnjol (2).jpeg" alt="Foto Anak" />
+    </div>
+
+    <div class="section">
+      <h2>ACARA KHITAN</h2>
+      <p>Hari/Tanggal: Sabtu, 11 Oktober 2025</p>
+      <p>Waktu: 08.00 WIB - selesai</p>
+      <p>Tempat: Kp. Pesanggrahan Serut, Kel. Walantaka, Kota Serang</p>
+      <div class="countdown" id="countdown"></div>
+    </div>
+
+    <div class="section">
+      <h2>LOKASI ACARA</h2>
+      <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3966.8624368145274!2d106.21826228162499!3d-6.149170382903238!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sid!2sid!4v1756305264340!5m2!1sid!2sid" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+
+    <div class="section">
+      <h2>PENUTUP</h2>
+      <p>Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu. Kehadiran Bapak/Ibu/Saudara/i akan semakin melengkapi kebahagiaan kami sekeluarga dalam acara ini. Semoga dengan kehadiran serta doa yang dipanjatkan, putra kami senantiasa diberikan kesehatan, umur yang panjang, keberkahan hidup, serta menjadi anak yang sholeh, berbakti kepada orang tua, agama, bangsa, dan negara.</p>
+      <p>Wassalamu’alaikum Warahmatullahi Wabarakatuh</p>
+      Hormat kami,<br>
+      <p>Keluarga Besar Bpk Imam & Ibu Eha</p>
+    </div>
+  </div>
+
+  <footer>
+    <p style="font-size: 12px;">"©Created by ELSA Digital (08787 104 6006)"</p>
+  </footer>
+
+  <!-- Musik Background -->
+  <button id="music-btn">🔊 Putar Musik</button>
+  <audio id="bg-music" loop>
+    <source src="/img/yaas.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    // countdown ke 11 Oktober 2025, jam 08:00
+    const eventDate = new Date("2025-10-11T08:00:00").getTime();
+    const cd = document.getElementById("countdown");
+
+    setInterval(()=>{
+      const now = new Date().getTime();
+      const diff = eventDate - now;
+      if(diff <= 0){
+        cd.textContent = "Acara Sedang Berlangsung";
+        return;
+      }
+      const d = Math.floor(diff/(1000*60*60*24));
+      const h = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+      const m = Math.floor((diff%(1000*60*60))/(1000*60));
+      const s = Math.floor((diff%(1000*60))/1000);
+      cd.textContent = `${d} Hari ${h} Jam ${m} Menit ${s} Detik`;
+    },1000);
+
+    // toggle musik
+    const audio = document.getElementById("bg-music");
+    const btn = document.getElementById("music-btn");
+    btn.addEventListener("click", ()=>{
+      if(audio.paused){
+        audio.play();
+        btn.textContent = "🔇 Matikan Musik";
+      } else {
+        audio.pause();
+        btn.textContent = "🔊 Putar Musik";
+      }
+    });
+  </script>
+
+</body>
+</html>
